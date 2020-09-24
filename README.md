@@ -1,3 +1,4 @@
+
 # ChallengeBackend
 
 Your goal is to create an app using the [spotify web api](https://developer.spotify.com/documentation/web-api/). You can make for example a [Flask](https://flask.palletsprojects.com/en/1.1.x/) or [Django rest framework](https://www.django-rest-framework.org/) project, it has to be able to authenticate to Spotify to fetch the new releases. Your job is to add two new features:
@@ -20,11 +21,17 @@ Feel free to move it and re-organise as you please, we expect a well organised a
 All stability, performance, efficiency adds-up are highly recommended.
 
 ## Launch the server
-1- You need to create in postgresql a database named spotify
-2- Add the following lines to your .bashrc
+- You need to create in postgresql a database named spotify
+- Add the following lines to your .bashrc :
+
 export APP_SETTINGS="config.ProductionConfig"
+
 export DATABASE_URL="postgresql:///spotify"
-3- Run the following lines
+
+- Run the following lines :
+
 python manage.py db init
+
 python manage.py db migrate && python manage.py db upgrade
+
 python manage.py runserver
