@@ -9,8 +9,8 @@ The spotify auth is provided by us: (follows spotify web api.): it is located in
 The flow ends with a call to `/auth/callback/` which will give you the necessary access tokens.
 To use it, we will provide you with the necessary: CLIENT_ID and CLIENT_SECRET.
 Feel free to move it and re-organise as you please, we expect a well organised and clean code.
-  
-  
+
+
 ## Tech Specifications
 - Be smart in your token usage (no unnecessary refreshes)
 - Don’t request spotify artists at each request we send you
@@ -18,3 +18,13 @@ Feel free to move it and re-organise as you please, we expect a well organised a
 - As stated above, to test your server we will `GET /api/artists/` and we expect a nicely organised payload of artists. Make sure to use proper serialization and handle http errors.
 
 All stability, performance, efficiency adds-up are highly recommended.
+
+## Launch the server
+1- You need to create in postgresql a database named spotify
+2- Add the following lines to your .bashrc
+export APP_SETTINGS="config.ProductionConfig"
+export DATABASE_URL="postgresql:///spotify"
+3- Run the following lines
+python manage.py db init
+python manage.py db migrate && python manage.py db upgrade
+python manage.py runserver

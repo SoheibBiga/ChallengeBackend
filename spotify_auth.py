@@ -20,10 +20,9 @@ class SpotifyAuth(object):
             "&response_type=code"
         )
 
-    def getToken(self, code, client_id, client_secret, redirect_uri):
+    def getToken(self, client_id, client_secret, redirect_uri):
         body = {
-            "grant_type": "authorization_code",
-            "code": code,
+            "grant_type": "client_credentials",
             "redirect_uri": redirect_uri,
             "client_id": client_id,
             "client_secret": client_secret,
@@ -43,7 +42,7 @@ class SpotifyAuth(object):
             return response
         return {
             key: response[key]
-            for key in ["access_token", "expires_in", "refresh_token"]
+            for key in ["access_token", "expires_in", "token_type"]
         }
 
     def refreshAuth(self, refresh_token):
@@ -61,7 +60,7 @@ class SpotifyAuth(object):
             self.CLIENT_ID, f"{self.CALLBACK_URL}/callback", self.SCOPE,
         )
 
-    def getUserToken(self, code):
+    def getUserToken(self):
         return self.getToken(
-            code, self.CLIENT_ID, self.CLIENT_SECRET, f"{self.CALLBACK_URL}/callback"
+            self.CLIENT_ID, self.CLIENT_SECRET, f"{self.CALLBACK_URL}/callback"
         )
